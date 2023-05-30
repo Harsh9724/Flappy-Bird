@@ -3,23 +3,23 @@ import sys
 import pygame
 from pygame.locals import *
 
-FPS = 40
-SCREENWIDTH = 600
-SCREENHEIGHT = 511
+FPS = 40 # frames per second
+SCREENWIDTH = 600 # size of window's width in pixels
+SCREENHEIGHT = 511 # size of windows' height in pixels
 
-SCREEN = pygame.display.set_mode((SCREENWIDTH, SCREENHEIGHT))
-GROUNDY = SCREENHEIGHT * 0.8
+SCREEN = pygame.display.set_mode((SCREENWIDTH, SCREENHEIGHT)) # creating the window
+GROUNDY = SCREENHEIGHT * 0.8 # base of the window
 
-GAME_SPRITES = {}
-GAME_SOUNDS = {}
+GAME_SPRITES = {} # dictionary of images
+GAME_SOUNDS = {} # dictionary of sounds
 
-PLAYER = 'Flappy-Bird/gallery/sprites/bird.png'
-BACKGROUND = 'Flappy-Bird/gallery/sprites/background.png'
-PIPE = 'Flappy-Bird/gallery/sprites/pipe.png'
+PLAYER = 'Flappy-Bird/gallery/sprites/bird.png' # path of player image
+BACKGROUND = 'Flappy-Bird/gallery/sprites/background.png' # path of background image
+PIPE = 'Flappy-Bird/gallery/sprites/pipe.png' # path of pipe image
 
 
-def welcomeScreen():
-    
+def welcomeScreen(): 
+    """ Shows welcome images on the screen """
     playerx = int(SCREENWIDTH/5)
     playery = int((SCREENHEIGHT - GAME_SPRITES['player'].get_height())/2)
 
@@ -52,7 +52,6 @@ def mainGame():
     newPipe1 = getRandomPipe()
     newPipe2 = getRandomPipe()
     newPipe3 = getRandomPipe()
-    newPipe4 = getRandomPipe()
 
     upperPipes = [
         {'x': SCREENWIDTH+200, 'y': newPipe1[0]['y']},
@@ -150,7 +149,7 @@ def mainGame():
         FPSCLOCK.tick(FPS)
 
 def isCollide(playerx, playery, upperPipes, lowerPipes):
-    
+        
         if playery > GROUNDY - 25 or playery < 0:
             GAME_SOUNDS['hit'].play()
             return True
@@ -167,11 +166,6 @@ def isCollide(playerx, playery, upperPipes, lowerPipes):
                 return True
     
         return False
-
-
-
-
-
 
 def getRandomPipe():
 
